@@ -6,6 +6,9 @@ from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
 import joblib
 import os
+from sklearn.metrics import classification_report, confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 csv_path = 'data/data.csv' 
@@ -43,3 +46,11 @@ os.makedirs('models', exist_ok=True)
 
 joblib.dump(svm_model, 'models/svm_model.pkl')
 joblib.dump(vectorizer, 'models/vectorizer.pkl')
+
+print("\n--- RAPORT KLASYFIKACJI ---")
+print(classification_report(y_test, test_preds, target_names=['Niewiarygodne', 'Wiarygodne']))
+
+# Macierz pomyłek
+conf_matrix = confusion_matrix(y_test, test_preds)
+print("\n--- MACIERZ POMYŁEK ---")
+print(conf_matrix)
