@@ -23,7 +23,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Wektoryzacja
-# Przeanalizuje pojedyncze słowa oraz pary słów (ngram_range) i weźmie 3000 najważniejszych
 vectorizer = TfidfVectorizer(max_features=3000, ngram_range=(1, 2))
 
 # Dopasowanie i transformacja zbioru treningowego
