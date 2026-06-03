@@ -42,7 +42,7 @@ Moduł odpowiedzialny za pobieranie zawartości stron internetowych przy użyciu
 
 `text_extraction.py`
 
-Moduł służący do budowy zbioru danych treningowych, przy użyciu `download.py`.
+Moduł służący do budowy zbioru danych treningowych z wykorzystaniem modułu `download.py`.
 
 2. **Proces tworzenia i trenowania modelu** 
 
