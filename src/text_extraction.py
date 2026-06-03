@@ -1,5 +1,5 @@
 
-from src.dwon import download_text
+from src.download import download_text
 import pandas as pd
 
 

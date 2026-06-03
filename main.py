@@ -1,6 +1,6 @@
 
-from src.dwon import download_text 
-from src.test import predict_new_article
+from src.download import download_text 
+from src.prediction import predict_new_article
 
 def main():
     

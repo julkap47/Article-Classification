@@ -1,22 +1,10 @@
 # Article-Classification
 
-Krótki opis projektu — co robi aplikacja i do czego służy.
-
----
-
-## Technologie
-
-Projekt został napisany przy użyciu:
-
-- Python 3.x
-- Virtual Environment (`venv`)
-- (opcjonalnie: Flask / FastAPI / Django / pandas / requests itd.)
+Aplikacja służąca do automatycznej klasyfikacji wiarygodności artykułów internetowych przy użyciu algorytmów uczenia maszynowego (SVM). Projekt pobiera treść artykułu z podanego adresu URL, a następnie ocenia, czy treść jest wiarygodna.
 
 ---
 
 ## Instalacja
-
-### 1. Sklonuj repozytorium
 
 ```bash
 git clone https://github.com/julkap47/Article-Classification.git
@@ -25,7 +13,6 @@ cd Article-Classification
 
 ---
 
-### 2. Utwórz środowisko virtualenv i je aktywuj
 
 #### Windows
 
@@ -43,32 +30,29 @@ source venv/bin/activate
 
 ---
 
-### 3. Zainstaluj zależności
-
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Uruchomienie projektu
-
-```bash
-python main.py
-```
 
 ---
 
 ## Struktura projektu
 
 ```text
-project/
-│
-├── venv/
-├── main.py
-├── requirements.txt
-├── README.md
-└── .gitignore
+Article-Classification/
+├── data/                   # Zbiory danych w formacie CSV
+├── docs/                   # Dokumentacja techniczna i użytkownika
+├── models/                 # Zapisane modele ML (pkl)
+├── src/                    # Kod źródłowy aplikacji
+│   ├── download.py         # Moduł pobierania i ekstrakcji treści
+│   ├── prediction.py       # Moduł uzycia modelu
+│   ├── text_extraction.py  # Wyodrębnienie tekstów z artykułów, baza artykułów
+│   └── model_training.py   # Tworzenie modelu i jego trening
+|    
+├── main.py             
+├── requirements.txt    
+└── README.md           #
 ```
 
 
