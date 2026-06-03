@@ -6,7 +6,7 @@ def main():
     
     newy = input("Podaj adres Url artykuły: ")
     text = download_text(newy)
-    text_poj = [text]  # Przekształcenie pojedynczego tekstu do formatu listy
+    text_poj = [text] 
     predykcja = predict_new_article(text_poj)
     print(predykcja)
 
