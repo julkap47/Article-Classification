@@ -34,35 +34,25 @@ Kategoria obejmuje źródła o wysokim standardzie informacyjnym:
 
 System działa w oparciu o dwa główne procesy:
 
-1. **Proces treningowy** – przygotowanie danych, trenowanie modelu oraz zapis wytrenowanych artefaktów.
-2. **Proces inferencyjny** – klasyfikacja nowych artykułów przy użyciu wcześniej wytrenowanego modelu.
+1. **Proces pobierania danych** 
 
-### Komponenty
+`download.py`
 
-#### `src/download.py`
+Moduł odpowiedzialny za pobieranie zawartości stron internetowych przy użyciu biblioteki `requests` oraz ekstrakcję głównej treści artykułu z wykorzystaniem biblioteki `trafilatura`.
 
-Odpowiada za pobieranie surowej zawartości strony internetowej (HTML) przy użyciu biblioteki `requests` oraz jej ekstrakcję za pomocą biblioteki `trafilatura`.
+`text_extraction.py`
 
-#### `text_extraction.py`
+Moduł służący do budowy zbioru danych treningowych, przy użyciu `download.py`.
 
-Moduł przetwarzający surowy kod HTML w celu wyodrębnienia czystej treści tekstowej artykułu.
+2. **Proces tworzenia i trenowania modelu** 
 
-#### `model_training.py`
+`model_training.py`
 
-Moduł odpowiedzialny za proces uczenia modelu. Realizuje:
+Moduł odpowiedzialny za proces uczenia modelu. W pierwszej kolejności wykonuje wektoryzację tekstu metodą TF-IDF, następnie przeprowadza trenowanie klasyfikatora `LinearSVC`, a na końcu zapisuje wytrenowany model oraz wektoryzator do plików.
 
-* wektoryzację tekstu metodą TF-IDF,
-* trenowanie klasyfikatora `LinearSVC`,
-* serializację modelu i wektoryzatora.
+`prediction.py`
 
-#### `prediction.py`
-
-Moduł produkcyjny odpowiedzialny za:
-
-* wczytywanie wytrenowanego modelu,
-* przetwarzanie nowych danych wejściowych,
-* wykonywanie klasyfikacji.
-
+Moduł wykorzystywany do wczytywania wcześniej wytrenowanego modelu i wykonywania predykcji dla nowych artykułów.
 
 ---
 
@@ -79,12 +69,10 @@ TfidfVectorizer(
 )
 ```
 
-Parametry:
+Zastosowano następujące parametry:
 
-* **ngram_range=(1, 2)** – analiza pojedynczych słów oraz fraz dwuwyrazowych.
-* **max_features=3000** – ograniczenie liczby cech do 3000 najistotniejszych tokenów.
-
-Takie podejście pozwala uchwycić zarówno pojedyncze słowa kluczowe, jak i istotny kontekst wynikający z występowania określonych fraz.
+ngram_range=(1, 2) – umożliwia analizę zarówno pojedynczych słów, jak i fraz dwuwyrazowych.
+max_features=3000 – ogranicza liczbę cech do 3000 najistotniejszych tokenów.
 
 ### Klasyfikator
 
@@ -123,7 +111,7 @@ Model został oceniony na zbiorze testowym zawierającym 17 artykułów.
 
 ### Interpretacja Wyników
 
-Model poprawnie sklasyfikował wszystkie artykuły oznaczone jako Niewiarygodne, a w przypadku klasy Wiarygodne wystąpił jeden błąd typu False Negative.
+Model poprawnie sklasyfikował wszystkie artykuły oznaczone jako Niewiarygodne, a w przypadku klasy Wiarygodne wystąpił jeden błąd typu False Negative, czyli artykuł wiarygodny został błędnie zakwalifikowany jako niewiarygodny.
 Precyzja dla klasy „Wiarygodne” wyniosła 100%, co oznacza, że każdy artykuł oznaczony przez model jako wiarygodny rzeczywiście należał do tej kategorii.
 
 
