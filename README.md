@@ -52,7 +52,7 @@ Article-Classification/
 |    
 ├── main.py             
 ├── requirements.txt    
-└── README.md           #
+└── README.md           
 ```
 
 
