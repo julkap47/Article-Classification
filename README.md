@@ -42,7 +42,7 @@ pip install -r requirements.txt
 ```text
 Article-Classification/
 ├── data/                   # Zbiory danych w formacie CSV
-├── docs/                   # Dokumentacja techniczna i użytkownika
+├── docs/                   # Dokumentacja techniczna
 ├── models/                 # Zapisane modele ML (pkl)
 ├── src/                    # Kod źródłowy aplikacji
 │   ├── download.py         # Moduł pobierania i ekstrakcji treści
